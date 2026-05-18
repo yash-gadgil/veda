@@ -1,0 +1,7 @@
+{
+  "parent": "veda:item/gada",
+  "textures": {
+    "particle": "veda:item/golden_gada_in_hand",
+    "texture": "veda:item/golden_gada_in_hand"
+  }
+}
