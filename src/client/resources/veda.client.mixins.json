@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.jackydoge.veda.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ExampleClientMixin",
+		"CosmicOceanSkyMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
