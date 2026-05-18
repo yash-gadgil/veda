@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "veda",
+	"version": "${version}",
+	"name": "Veda",
+	"description": "A mod based on Hindu mythology.",
+	"authors": [
+		"jackydoge", "softy", "shindesarkar"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/veda/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.jackydoge.veda.Veda"
+		],
+		"client": [
+			"com.jackydoge.veda.client.VedaClient"
+		],
+		"fabric-datagen": [
+			"com.jackydoge.veda.client.VedaDataGenerator"
+		]
+	},
+	"mixins": [
+		"veda.mixins.json",
+		{
+			"config": "veda.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
