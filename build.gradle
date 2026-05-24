@@ -7,11 +7,24 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = 'GeckoLib'
+				url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+			}
+		}
+		filter {
+			includeGroupAndSubgroups('com.geckolib')
+		}
+	}
+	maven {
+		name = 'BlameJared'
+		url = 'https://maven.blamejared.com/'
+		content {
+			includeGroup('mezz.jei')
+		}
+	}
 }
 
 loom {
@@ -40,7 +53,15 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	
+
+	// GeckoLib (client only — jar contains client MC class refs that break main source set compilation)
+	clientImplementation "com.geckolib:geckolib-fabric-26.1:${project.geckolib_version}"
+
+	// JEI (optional, compile-only for API access)
+	compileOnly "mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}"
+	compileOnly "mezz.jei:jei-${project.minecraft_version}-fabric-api:${project.jei_version}"
+	// JEI runtime for dev testing
+	runtimeOnly "mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}"
 }
 
 processResources {
